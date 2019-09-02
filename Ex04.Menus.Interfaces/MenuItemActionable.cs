@@ -38,6 +38,7 @@ namespace Ex04.Menus.Interfaces
         public override int StartMenuAction()
         {
             notifyActionListener();
+            System.Console.ReadLine();
             return 1;
         }
     }

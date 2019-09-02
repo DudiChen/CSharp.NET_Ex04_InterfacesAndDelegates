@@ -24,10 +24,11 @@ namespace Ex04.Menus.Test
             MenuItemActionable VersionActionMenuItem = new MenuItemActionable("Show Version");
             MenuItemActionable SpaceCounterActionMenuItem = new MenuItemActionable("Count spaces");
 
-            SpaceCounterActionMenuItem.SetActionListener(new SpaceCounter());
-            VersionActionMenuItem.SetActionListener(new Version());
-            dateActionMenuItem.SetActionListener(new DateProvider());
-            TimeActionMenuItem.SetActionListener(new TimeProvider());
+            SpaceCounterActionMenuItem.SetActionListener((new SpaceCounter()) as IActionListener);
+            VersionActionMenuItem.SetActionListener((new Version()) as IActionListener);
+            dateActionMenuItem.SetActionListener(((new DateProvider()) as IActionListener));
+            TimeActionMenuItem.SetActionListener((new TimeProvider()) as IActionListener);
+
             mainMenuItem.AddSubMenuItem(DateTimeMenuItem);
             mainMenuItem.AddSubMenuItem(VersionAndDigitsMenuItem);
             DateTimeMenuItem.AddSubMenuItem(dateActionMenuItem);
@@ -46,12 +47,13 @@ namespace Ex04.Menus.Test
         private readonly DateTime r_DateTime;
         public TimeProvider()
         {
-            r_DateTime = new DateTime();
+            r_DateTime = DateTime.Now;
+            
         }
 
         public void DoAction()
         {
-            System.Console.WriteLine("the current time is: {0}:{1}:{2}",r_DateTime.Hour,r_DateTime.Minute,r_DateTime.Second);
+            System.Console.WriteLine("the current time is: {0}",r_DateTime.ToString("hh:mm:ss"));
         }
     }
 
@@ -61,12 +63,12 @@ namespace Ex04.Menus.Test
 
         public DateProvider()
         {
-            r_DateTime = new DateTime();
+            r_DateTime = DateTime.Now;
         }
 
         public void DoAction()
         {
-            System.Console.WriteLine("the current Date is: {0}/{1}/{2}", r_DateTime.Day, r_DateTime.Month, r_DateTime.Year);
+            System.Console.WriteLine("the current Date is: {0}", r_DateTime.ToString("dd/mm/yyyy"));
         }
     }
 
