@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B4E7660-A9CA-4E4C-A30C-84E91F6B723F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{0A447543-E9DE-4336-8299-68EE004ED0EB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ex04.Menus.Interfaces</RootNamespace>
-    <AssemblyName>Ex04.Menus.Interfaces</AssemblyName>
+    <RootNamespace>Ex04.Menus.Delegates</RootNamespace>
+    <AssemblyName>Ex04.Menus.Delegates</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,18 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="MenuItem.cs" />
-    <Compile Include="MenuItemActionable.cs" />
-    <Compile Include="MenuItemNonActionable.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
