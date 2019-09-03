@@ -5,7 +5,7 @@ using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    class ProgramInterface
+    public class ProgramInterface
     {
         public void InterfaceMainMenu()
         {
@@ -16,48 +16,48 @@ namespace Ex04.Menus.Test
 
         private MenuItem mainMenuCreator()
         {
-            MenuItemNonActionable mainMenuItem =  new MenuItemNonActionable("Main menu");
-            MenuItemNonActionable DateTimeMenuItem = new MenuItemNonActionable("Show Date/Time");
-            MenuItemNonActionable VersionAndDigitsMenuItem = new MenuItemNonActionable("Version and digits");
-            MenuItemActionable TimeActionMenuItem = new MenuItemActionable("Show time");
+            MenuItemNonActionable mainMenuItem = new MenuItemNonActionable("Main menu");
+            MenuItemNonActionable dateTimeMenuItem = new MenuItemNonActionable("Show Date/Time");
+            MenuItemNonActionable versionAndDigitsMenuItem = new MenuItemNonActionable("Version and digits");
+            MenuItemActionable timeActionMenuItem = new MenuItemActionable("Show time");
             MenuItemActionable dateActionMenuItem = new MenuItemActionable("Show date");
-            MenuItemActionable VersionActionMenuItem = new MenuItemActionable("Show Version");
-            MenuItemActionable SpaceCounterActionMenuItem = new MenuItemActionable("Count spaces");
+            MenuItemActionable versionActionMenuItem = new MenuItemActionable("Show Version");
+            MenuItemActionable spaceCounterActionMenuItem = new MenuItemActionable("Count spaces");
 
-            SpaceCounterActionMenuItem.SetActionListener((new SpaceCounter()) as IActionListener);
-            VersionActionMenuItem.SetActionListener((new Version()) as IActionListener);
-            dateActionMenuItem.SetActionListener(((new DateProvider()) as IActionListener));
-            TimeActionMenuItem.SetActionListener((new TimeProvider()) as IActionListener);
+            spaceCounterActionMenuItem.SetOnSelectedListener((new SpaceCounter()) as IOnSelectedListener);
+            versionActionMenuItem.SetOnSelectedListener((new Version()) as IOnSelectedListener);
+            dateActionMenuItem.SetOnSelectedListener((new DateProvider()) as IOnSelectedListener);
+            timeActionMenuItem.SetOnSelectedListener((new TimeProvider()) as IOnSelectedListener);
 
-            mainMenuItem.AddSubMenuItem(DateTimeMenuItem);
-            mainMenuItem.AddSubMenuItem(VersionAndDigitsMenuItem);
-            DateTimeMenuItem.AddSubMenuItem(dateActionMenuItem);
-            DateTimeMenuItem.AddSubMenuItem(TimeActionMenuItem);
-            VersionAndDigitsMenuItem.AddSubMenuItem(VersionActionMenuItem);
-            VersionAndDigitsMenuItem.AddSubMenuItem(SpaceCounterActionMenuItem);
+            mainMenuItem.AddSubMenuItem(dateTimeMenuItem);
+            mainMenuItem.AddSubMenuItem(versionAndDigitsMenuItem);
+            dateTimeMenuItem.AddSubMenuItem(dateActionMenuItem);
+            dateTimeMenuItem.AddSubMenuItem(timeActionMenuItem);
+            versionAndDigitsMenuItem.AddSubMenuItem(versionActionMenuItem);
+            versionAndDigitsMenuItem.AddSubMenuItem(spaceCounterActionMenuItem);
 
             return mainMenuItem;
         }
-        
+
 
     }
 
-    class TimeProvider : IActionListener
+    internal class TimeProvider : IOnSelectedListener
     {
         private readonly DateTime r_DateTime;
         public TimeProvider()
         {
             r_DateTime = DateTime.Now;
-            
+
         }
 
-        public void DoAction()
+        public void OnSelected()
         {
-            System.Console.WriteLine("the current time is: {0}",r_DateTime.ToString("hh:mm:ss"));
+            System.Console.WriteLine("the current time is: {0}", r_DateTime.ToString("hh:mm:ss"));
         }
     }
 
-    class DateProvider : IActionListener
+    internal class DateProvider : IOnSelectedListener
     {
         private readonly DateTime r_DateTime;
 
@@ -66,35 +66,36 @@ namespace Ex04.Menus.Test
             r_DateTime = DateTime.Now;
         }
 
-        public void DoAction()
+        public void OnSelected()
         {
             System.Console.WriteLine("the current Date is: {0}", r_DateTime.ToString("dd/mm/yyyy"));
         }
     }
 
-    class Version : IActionListener
+    internal class Version : IOnSelectedListener
     {
-        public void DoAction()
+        private const string k_VersionNumberStr = "1.0.0.21";
+        public void OnSelected()
         {
-            System.Console.WriteLine("the version is: 1.0.0.21");
+            System.Console.WriteLine("the version is: {0}", k_VersionNumberStr);
         }
     }
 
-    class SpaceCounter : IActionListener
+    internal class SpaceCounter : IOnSelectedListener
     {
 
-        public void DoAction()
+        public void OnSelected()
         {
             int spaceCounter = 0;
             string userString = RequestStringFromUser();
-            foreach(char letter in userString)
+            foreach (char letter in userString)
             {
-                if(char.IsWhiteSpace(letter))
+                if (char.IsWhiteSpace(letter))
                 {
                     spaceCounter++;
                 }
             }
-            System.Console.WriteLine("the number of spaces in the input string are: {0}",spaceCounter);
+            System.Console.WriteLine("the number of spaces in the input string are: {0}", spaceCounter);
         }
 
         private string RequestStringFromUser()

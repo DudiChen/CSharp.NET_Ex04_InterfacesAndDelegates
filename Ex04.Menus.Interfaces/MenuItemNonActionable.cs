@@ -8,24 +8,25 @@ namespace Ex04.Menus.Interfaces
     {
         private List<MenuItem> m_SubMenuItems;
 
-        public MenuItemNonActionable(string i_TitleNameString) : base(i_TitleNameString)
-        { }
+        public MenuItemNonActionable(string i_TitleNameString)
+            : base(i_TitleNameString)
+        {
+        }
 
-
-        public override int StartMenuAction()
+        public override bool StartMenuItem()
         {
             showSubMenuItemTitles();
             int userChoice = getUserChoice();
-            while (userChoice != 0) 
+
+            while (userChoice != 0)
             {
-                m_SubMenuItems[userChoice - 1].StartMenuAction();
+                m_SubMenuItems[userChoice - 1].StartMenuItem();
                 showSubMenuItemTitles();
                 userChoice = getUserChoice();
             }
-            
-            return userChoice;
-        }
 
+            return true;
+        }
 
         public void AddSubMenuItem(MenuItem i_MenuItem)
         {
@@ -35,8 +36,7 @@ namespace Ex04.Menus.Interfaces
             }
 
             m_SubMenuItems.Add(i_MenuItem);
-            i_MenuItem.SetPerent(this);
-
+            i_MenuItem.SetParent(this);
         }
 
         private void showSubMenuItemTitles()
@@ -44,7 +44,7 @@ namespace Ex04.Menus.Interfaces
             Console.Clear();
             int choiceCounter = 0;
             StringBuilder menuStringBuilder = new StringBuilder();
-            if (m_baseMenuItem == null)
+            if (m_BaseMenuItem == null)
             {
                 menuStringBuilder.AppendLine("0. Exit");
             }
@@ -55,8 +55,9 @@ namespace Ex04.Menus.Interfaces
 
             foreach (MenuItem subMenuItem in m_SubMenuItems)
             {
-                menuStringBuilder.AppendLine(String.Format("{0}. {1}", ++choiceCounter, subMenuItem.Title));
+                menuStringBuilder.AppendLine(string.Format("{0}. {1}", ++choiceCounter, subMenuItem.Title));
             }
+
             System.Console.WriteLine(menuStringBuilder.ToString());
         }
 
@@ -65,7 +66,7 @@ namespace Ex04.Menus.Interfaces
             System.Console.WriteLine("Choose from the choices above:");
             int userInput;
 
-            while (!int.TryParse(System.Console.ReadLine(), out userInput) || userInput < 0 && userInput > m_SubMenuItems.Count)
+            while ((!int.TryParse(System.Console.ReadLine(), out userInput)) || (userInput < 0 && userInput > m_SubMenuItems.Count))
             {
                 System.Console.WriteLine("input not valid try again:");
             }
