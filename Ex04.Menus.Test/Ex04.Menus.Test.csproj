@@ -33,12 +33,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramDelegates.cs" />
     <Compile Include="ProgramInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ex04.Menus.Delegates\Ex04.Menus.Delegates.csproj">
+      <Project>{0a447543-e9de-4336-8299-68ee004ed0eb}</Project>
+      <Name>Ex04.Menus.Delegates</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ex04.Menus.Interfaces\Ex04.Menus.Interfaces.csproj">
       <Project>{8b4e7660-a9ca-4e4c-a30c-84e91f6b723f}</Project>
       <Name>Ex04.Menus.Interfaces</Name>
