@@ -32,9 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MainMenuBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramDelegates.cs" />
     <Compile Include="ProgramInterface.cs" />
+    <Compile Include="ProgramUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

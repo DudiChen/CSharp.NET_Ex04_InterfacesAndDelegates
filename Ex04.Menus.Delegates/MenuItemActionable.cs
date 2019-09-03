@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Security.Policy;
 using System.Text;
 
+
+
 namespace Ex04.Menus.Delegates
 {
-    class MenuItemActionable : MenuItem
+    public class MenuItemActionable : MenuItem
     {
-        public event Action<MenuItem> ActivateOccured;
+        //public event Action<> ActivateOccured;
+        public Action<string> ActivateOccuredDelegate;
 
         public MenuItemActionable(string i_Title, string i_Headline) 
             : base(i_Title, i_Headline)
@@ -23,9 +26,9 @@ namespace Ex04.Menus.Delegates
 
         protected virtual void OnActivate()
         {
-            if(ActivateOccured != null)
+            if (ActivateOccuredDelegate != null)
             {
-                ActivateOccured.Invoke(this);
+                ActivateOccuredDelegate.Invoke(this.Headline);
             }
         }
     }

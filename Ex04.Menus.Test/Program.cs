@@ -8,8 +8,9 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            ProgramInterface test = new ProgramInterface();
-            test.InterfaceMainMenu();
+            //ProgramInterface test = new ProgramInterface();
+            //test.InterfaceMainMenu();
+            ProgramDelegates.ProgramDelegatesMain();
         }
     }
 }

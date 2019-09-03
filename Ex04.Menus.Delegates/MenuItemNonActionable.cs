@@ -26,6 +26,29 @@ namespace Ex04.Menus.Delegates
         {
         }
 
+        public void AddSubMenuItem(MenuItem i_SubMenuItem)
+        {
+            m_SubMenuItems.Add(i_SubMenuItem);
+        }
+
+        public override void Activate()
+        {
+            bool isMenuActivated = true;
+
+            while (isMenuActivated)
+            {
+                showMenuItems();
+                int userChoice = GetUserChoice();
+
+                if (k_EscapeCharacter == userChoice)
+                {
+                    isMenuActivated = false;
+                }
+
+                m_SubMenuItems[userChoice - 1].Activate();
+            }
+        }
+
         protected int GetUserChoice()
         {
             string userChoiceString = Console.ReadLine();
@@ -52,11 +75,6 @@ namespace Ex04.Menus.Delegates
             return result;
         }
 
-        public void AddSubMenuItem(MenuItem i_SubMenuItem)
-        {
-            m_SubMenuItems.Add(i_SubMenuItem);
-        }
-
         private void showMenuItems()
         {
             StringBuilder menuOutput = new StringBuilder();
@@ -69,24 +87,6 @@ namespace Ex04.Menus.Delegates
             }
 
             Console.WriteLine(menuOutput);
-        }
-
-        public override void Activate()
-        {
-            bool isMenuActivated = true;
-
-            while(isMenuActivated)
-            {
-                showMenuItems();
-                int userChoice = GetUserChoice();
-
-                if (k_EscapeCharacter == userChoice)
-                {
-                    isMenuActivated = false;
-                }
-
-                m_SubMenuItems[userChoice - 1].Activate();
-            }
         }
     }
 }
