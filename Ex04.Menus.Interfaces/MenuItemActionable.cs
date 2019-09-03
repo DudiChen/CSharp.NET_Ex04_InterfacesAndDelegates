@@ -4,41 +4,44 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    public interface IActionListener
+    public interface IOnSelectedListener
     {
-        void DoAction();
+        void OnSelected();
     }
+
     public class MenuItemActionable : MenuItem
     {
-        private IActionListener m_ActionListener;
+        private IOnSelectedListener m_OnSelectedListener;
 
         public MenuItemActionable(string i_TitleNameString) : base(i_TitleNameString)
         {
-            
         }
 
-        public void SetActionListener(IActionListener i_ActionListener)
+        public void SetOnSelectedListener(IOnSelectedListener i_OnSelectedListener)
         {
-            m_ActionListener = i_ActionListener;
+            m_OnSelectedListener = i_OnSelectedListener;
         }
 
-        public void RemoveActionListener(IActionListener i_ActionListener)
+        public void RemoveOnSelectedListener(IOnSelectedListener i_OnSelectedListener)
         {
-            m_ActionListener = null;
+            m_OnSelectedListener = null;
         }
 
-        private void notifyActionListener()
+        private void notifyOnSelectedListener()
         {
-            if (m_ActionListener != null)
+            if (m_OnSelectedListener != null)
             {
-                m_ActionListener.DoAction();
+                m_OnSelectedListener.OnSelected();
             }
         }
 
-        public override int StartMenuAction()
+        public override bool StartMenuItem()
         {
-            notifyActionListener();
-            return 1;
+            notifyOnSelectedListener();
+            System.Console.WriteLine("Enter any key to continue...");
+            System.Console.ReadLine();
+
+            return true;
         }
     }
 }
