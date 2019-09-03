@@ -9,7 +9,6 @@ namespace Ex04.Menus.Test
     {
         public void InterfaceMainMenu()
         {
-
             MainMenu mainMenu = new MainMenu(mainMenuCreator());
             mainMenu.Show();
         }
@@ -38,8 +37,6 @@ namespace Ex04.Menus.Test
 
             return mainMenuItem;
         }
-
-
     }
 
     internal class TimeProvider : IOnSelectedListener
@@ -48,7 +45,6 @@ namespace Ex04.Menus.Test
         public TimeProvider()
         {
             r_DateTime = DateTime.Now;
-
         }
 
         public void OnSelected()
@@ -75,6 +71,7 @@ namespace Ex04.Menus.Test
     internal class Version : IOnSelectedListener
     {
         private const string k_VersionNumberStr = "1.0.0.21";
+
         public void OnSelected()
         {
             System.Console.WriteLine("the version is: {0}", k_VersionNumberStr);
@@ -83,7 +80,6 @@ namespace Ex04.Menus.Test
 
     internal class SpaceCounter : IOnSelectedListener
     {
-
         public void OnSelected()
         {
             int spaceCounter = 0;
@@ -95,6 +91,7 @@ namespace Ex04.Menus.Test
                     spaceCounter++;
                 }
             }
+
             System.Console.WriteLine("the number of spaces in the input string are: {0}", spaceCounter);
         }
 

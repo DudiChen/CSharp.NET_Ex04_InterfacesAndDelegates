@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Security.Policy;
 using System.Text;
 
-
-
 namespace Ex04.Menus.Delegates
 {
     public class MenuItemActionable : MenuItem
@@ -14,7 +12,6 @@ namespace Ex04.Menus.Delegates
         public MenuItemActionable(string i_Title, string i_Headline) 
             : base(i_Title, i_Headline)
         {
-
         }
 
         public override void Activate()

@@ -7,8 +7,8 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItemNonActionable : MenuItem
     {
-        private static int s_mainMenuItemsCounter = 0;
         private const int k_EscapeCharacter = 0;
+        private static int s_mainMenuItemsCounter = 0;
         private string m_EscapeMenuLine = "Back";
         private List<MenuItem> m_SubMenuItems;
         private bool m_isMainMenu = false;
@@ -22,6 +22,7 @@ namespace Ex04.Menus.Delegates
                 {
                     throw new ArgumentException("A single Main Menu Item already exists!");
                 }
+
                 s_mainMenuItemsCounter++;
                 m_isMainMenu = value;
                 m_EscapeMenuLine = "Exit";
@@ -61,11 +62,8 @@ namespace Ex04.Menus.Delegates
                 {
                     m_SubMenuItems[userChoice - 1].Activate();
                 }
-                
             }
         }
-
-        
 
         protected int GetUserChoice()
         {
@@ -74,7 +72,7 @@ namespace Ex04.Menus.Delegates
             int userChoice;
             if (int.TryParse(userChoiceString, out userChoice))
             {
-                if (userChoice >= 1 && userChoice <= m_SubMenuItems.Count || userChoice == k_EscapeCharacter)
+                if ((userChoice >= 1 && userChoice <= m_SubMenuItems.Count) || (userChoice == k_EscapeCharacter))
                 {
                     result = userChoice;
                 }

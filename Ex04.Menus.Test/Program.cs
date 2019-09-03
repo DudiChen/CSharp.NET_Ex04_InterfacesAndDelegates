@@ -13,7 +13,6 @@ namespace Ex04.Menus.Test
             //test.InterfaceMainMenu();
             Delegates.MainMenu mainMenu = MainMenuDelegatesBuilder.Build();
             mainMenu.Show();
-
         }
     }
 }
