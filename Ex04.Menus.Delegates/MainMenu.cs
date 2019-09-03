@@ -17,10 +17,5 @@ namespace Ex04.Menus.Delegates
         {
             m_MainMenuItem.Activate();
         }
-
-        ////public bool MenuItems_Chosen()
-        ////{
-
-        ////}
     }
 }

@@ -9,8 +9,7 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItemActionable : MenuItem
     {
-        //public event Action<> ActivateOccured;
-        public Action<string> ActivateOccuredDelegate;
+        public Action<string> m_ActivateOccuredDelegate;
 
         public MenuItemActionable(string i_Title, string i_Headline) 
             : base(i_Title, i_Headline)
@@ -20,15 +19,16 @@ namespace Ex04.Menus.Delegates
 
         public override void Activate()
         {
+            Console.Clear();
             OnActivate();
-            ////return true;
         }
 
         protected virtual void OnActivate()
         {
-            if (ActivateOccuredDelegate != null)
+            if (m_ActivateOccuredDelegate != null)
             {
-                ActivateOccuredDelegate.Invoke(this.Headline);
+                m_ActivateOccuredDelegate.Invoke(this.Headline);
+                promptEnterToContinue();
             }
         }
     }

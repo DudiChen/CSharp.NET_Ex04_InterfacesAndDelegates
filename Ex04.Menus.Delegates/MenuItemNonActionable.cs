@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,7 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItemNonActionable : MenuItem
     {
+        private static int s_mainMenuItemsCounter = 0;
         private const int k_EscapeCharacter = 0;
         private string m_EscapeMenuLine = "Back";
         private List<MenuItem> m_SubMenuItems;
@@ -16,6 +18,11 @@ namespace Ex04.Menus.Delegates
             get { return m_isMainMenu; }
             set
             {
+                if (s_mainMenuItemsCounter == 1)
+                {
+                    throw new ArgumentException("A single Main Menu Item already exists!");
+                }
+                s_mainMenuItemsCounter++;
                 m_isMainMenu = value;
                 m_EscapeMenuLine = "Exit";
             }
@@ -28,6 +35,11 @@ namespace Ex04.Menus.Delegates
 
         public void AddSubMenuItem(MenuItem i_SubMenuItem)
         {
+            if (m_SubMenuItems == null)
+            {
+                m_SubMenuItems = new List<MenuItem>();
+            }
+
             m_SubMenuItems.Add(i_SubMenuItem);
         }
 
@@ -37,6 +49,7 @@ namespace Ex04.Menus.Delegates
 
             while (isMenuActivated)
             {
+                Console.Clear();
                 showMenuItems();
                 int userChoice = GetUserChoice();
 
@@ -44,10 +57,15 @@ namespace Ex04.Menus.Delegates
                 {
                     isMenuActivated = false;
                 }
-
-                m_SubMenuItems[userChoice - 1].Activate();
+                else
+                {
+                    m_SubMenuItems[userChoice - 1].Activate();
+                }
+                
             }
         }
+
+        
 
         protected int GetUserChoice()
         {
@@ -56,9 +74,8 @@ namespace Ex04.Menus.Delegates
             int userChoice;
             if (int.TryParse(userChoiceString, out userChoice))
             {
-                if (userChoice >= 1 && userChoice <= m_SubMenuItems.Count)
+                if (userChoice >= 1 && userChoice <= m_SubMenuItems.Count || userChoice == k_EscapeCharacter)
                 {
-                    //return userChoice;
                     result = userChoice;
                 }
                 else

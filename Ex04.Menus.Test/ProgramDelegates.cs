@@ -9,8 +9,8 @@ namespace Ex04.Menus.Test
     {
         public static void ProgramDelegatesMain()
         {
-            MainMenu mainMenu = MainMenuDelegatesBuilder.Build();
-            mainMenu.Show();
+            //MainMenu mainMenu = MainMenuDelegatesBuilder.Build();
+            //mainMenu.Show();
         }
     }
 }

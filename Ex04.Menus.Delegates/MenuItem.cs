@@ -32,30 +32,10 @@ namespace Ex04.Menus.Delegates
 
         public abstract void Activate();
 
-        ////public void AddSubMenuItem(MenuItem i_SubMenuItem)
-        ////{
-        ////    m_MenuItems.Add(i_SubMenuItem);
-        ////}
-
-        ////public void RemoveSubMenuItem(MenuItem i_SubMenuItem)
-        ////{
-        ////    m_MenuItems.Remove(i_SubMenuItem);
-        ////}
-
-        ////public bool Equals(object i_OtherObj)
-        ////{
-        ////    bool result = false;
-
-        ////    MenuItem otherMenuItem = i_OtherObj as MenuItem;
-        ////    if (otherMenuItem != null)
-        ////    {
-        ////        result = (this.m_Title == otherMenuItem.Title
-        ////                  && this.Headline == otherMenuItem.Headline);
-        ////    }
-
-        ////    return result;
-        ////}
-
-
+        protected void promptEnterToContinue()
+        {
+            Console.WriteLine("{0}Please press Enter to continue...", Environment.NewLine);
+            Console.ReadLine();
+        }
     }
 }
