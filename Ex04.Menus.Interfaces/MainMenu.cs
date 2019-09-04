@@ -6,7 +6,6 @@ namespace Ex04.Menus.Interfaces
 {
     public class MainMenu
     {
-        private const string k_MainMenuTitle = "#### Interface main menu ###";
         private readonly MenuItem r_MainMenuItem;
 
         public MainMenu(MenuItem i_MainMenuItem)
@@ -16,8 +15,11 @@ namespace Ex04.Menus.Interfaces
 
         public void Show()
         {
-            while(!r_MainMenuItem.StartMenuItem())
+            bool closeMenuBoolean = false;
+            while(!closeMenuBoolean)
             {
+                //System.Console.WriteLine(r_MainMenuItem.Title);
+                closeMenuBoolean = r_MainMenuItem.StartMenuItem();
             }
         }
     }

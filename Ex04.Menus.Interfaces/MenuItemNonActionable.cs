@@ -42,8 +42,10 @@ namespace Ex04.Menus.Interfaces
         private void showSubMenuItemTitles()
         {
             Console.Clear();
+            
             int choiceCounter = 0;
             StringBuilder menuStringBuilder = new StringBuilder();
+            menuStringBuilder.AppendLine(string.Format(":: {0} ::",Title));
             if (m_BaseMenuItem == null)
             {
                 menuStringBuilder.AppendLine("0. Exit");
