@@ -42,8 +42,10 @@ namespace Ex04.Menus.Interfaces
         private void showSubMenuItemTitles()
         {
             Console.Clear();
+            
             int choiceCounter = 0;
             StringBuilder menuStringBuilder = new StringBuilder();
+            menuStringBuilder.AppendLine(string.Format(":: {0} ::",Title));
             if (m_BaseMenuItem == null)
             {
                 menuStringBuilder.AppendLine("0. Exit");
@@ -66,7 +68,7 @@ namespace Ex04.Menus.Interfaces
             System.Console.WriteLine("Choose from the choices above:");
             int userInput;
 
-            while ((!int.TryParse(System.Console.ReadLine(), out userInput)) || (userInput < 0 && userInput > m_SubMenuItems.Count))
+            while ((!int.TryParse(System.Console.ReadLine(), out userInput)) || (userInput < 0 || userInput > m_SubMenuItems.Count))
             {
                 System.Console.WriteLine("input not valid try again:");
             }

@@ -35,7 +35,7 @@
     <Compile Include="MainMenuBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramDelegates.cs" />
-    <Compile Include="ProgramInterface.cs" />
+    <Compile Include="InterfaceProgramUtils.cs" />
     <Compile Include="ProgramUtils.cs" />
   </ItemGroup>
   <ItemGroup>
