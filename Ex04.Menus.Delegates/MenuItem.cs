@@ -6,7 +6,6 @@ namespace Ex04.Menus.Delegates
 {
     public abstract class MenuItem
     {
-        //protected string m_HeadlineSeparator = "----------------------------";
         protected string m_HeadlineSeparator;
         protected string m_HeadlineSeparatorCharacter = "-";
         protected string m_HeadlineStylingEdge = " :: ";
@@ -43,7 +42,6 @@ namespace Ex04.Menus.Delegates
 
         protected void promptEnterToContinue()
         {
-            //Console.WriteLine("{0}Please press Enter to continue...", Environment.NewLine);
             Console.WriteLine("{0}Press any key to continue...",Environment.NewLine);
             Console.ReadKey(true);
         }

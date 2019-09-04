@@ -46,14 +46,12 @@ namespace Ex04.Menus.Test
         private static void menuItem_ShowTimeActivated(string i_MenuHeadline)
         {
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
-            //DateTime currentTime = GetCurrentTime();
             ProgramUtils.ShowCurrentTimeString();
         }
 
         private static void menuItem_ShowDateActivated(string i_MenuHeadline)
         {
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
-            //DateTime currentDate = GetCurrentDate();
             ProgramUtils.ShowCurrentDateString();
         }
 
@@ -61,7 +59,6 @@ namespace Ex04.Menus.Test
         {
 
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
-            //string version = GetVersion();
             ProgramUtils.ShowVersion();
         }
 

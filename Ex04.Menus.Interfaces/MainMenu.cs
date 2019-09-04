@@ -18,7 +18,6 @@ namespace Ex04.Menus.Interfaces
             bool closeMenuBoolean = false;
             while(!closeMenuBoolean)
             {
-                //System.Console.WriteLine(r_MainMenuItem.Title);
                 closeMenuBoolean = r_MainMenuItem.StartMenuItem();
             }
         }
