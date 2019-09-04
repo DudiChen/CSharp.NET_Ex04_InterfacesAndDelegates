@@ -11,7 +11,6 @@ namespace Ex04.Menus.Interfaces
 
         protected MenuItem(string i_TitleString)
         {
-            
             r_Title = i_TitleString;
         }
 

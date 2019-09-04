@@ -7,7 +7,6 @@ namespace Ex04.Menus.Test
 {
     public class InterfaceProgramUtils
     {
-
         public static MenuItem mainMenuCreator()
         {
             MenuItemNonActionable mainMenuItem = new MenuItemNonActionable("Interface Main menu");
@@ -37,6 +36,7 @@ namespace Ex04.Menus.Test
     internal class TimeProvider : IOnSelectedListener
     {
         private readonly DateTime r_DateTime;
+
         public TimeProvider()
         {
             r_DateTime = DateTime.Now;

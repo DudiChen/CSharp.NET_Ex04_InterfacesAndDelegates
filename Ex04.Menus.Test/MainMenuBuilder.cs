@@ -57,7 +57,6 @@ namespace Ex04.Menus.Test
 
         private static void menuItem_ShowVersioActivated(string i_MenuHeadline)
         {
-
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
             ProgramUtils.ShowVersion();
         }
