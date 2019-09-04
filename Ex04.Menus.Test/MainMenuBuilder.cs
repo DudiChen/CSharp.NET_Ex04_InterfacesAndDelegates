@@ -34,7 +34,7 @@ namespace Ex04.Menus.Test
             versionsAndDigitsMenu.AddSubMenuItem(countSpacesMenu);
 
             MenuItemNonActionable mainMenuItem = new MenuItemNonActionable(
-                "Main Menu", "Main Menu");
+                "Main Menu", "Delegates - Main Menu");
             mainMenuItem.IsSetToMainMenu = true;
 
             mainMenuItem.AddSubMenuItem(dateTimeMenu);
@@ -59,6 +59,7 @@ namespace Ex04.Menus.Test
 
         private static void menuItem_ShowVersioActivated(string i_MenuHeadline)
         {
+
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
             //string version = GetVersion();
             ProgramUtils.ShowVersion();

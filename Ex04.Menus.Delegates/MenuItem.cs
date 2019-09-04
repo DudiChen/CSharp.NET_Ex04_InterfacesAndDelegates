@@ -6,14 +6,25 @@ namespace Ex04.Menus.Delegates
 {
     public abstract class MenuItem
     {
-        protected string m_HeadlineSeparator = "----------------";
+        //protected string m_HeadlineSeparator = "----------------------------";
+        protected string m_HeadlineSeparator;
+        protected string m_HeadlineSeparatorCharacter = "-";
+        protected string m_HeadlineStylingEdge = " :: ";
         protected string m_Title;
         protected string m_Headline;
 
         protected MenuItem(string i_Title, string i_Headline)
         {
             m_Title = i_Title;
-            m_Headline = string.Format("{0}:{1}{2}", i_Headline, Environment.NewLine, m_HeadlineSeparator);
+            StringBuilder headlineBuilder = new StringBuilder();
+            headlineBuilder.AppendFormat("{0}{1}{0}{2}", m_HeadlineStylingEdge, i_Headline, Environment.NewLine);
+            int headlineLength = headlineBuilder.Length;
+            for (int i = 0; i < headlineLength; i++)
+            {
+                headlineBuilder.AppendFormat("{0}", m_HeadlineSeparatorCharacter);
+            }
+
+            m_Headline = headlineBuilder.ToString();
         }
 
         public string Title
@@ -33,7 +44,7 @@ namespace Ex04.Menus.Delegates
         protected void promptEnterToContinue()
         {
             //Console.WriteLine("{0}Please press Enter to continue...", Environment.NewLine);
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("{0}Press any key to continue...",Environment.NewLine);
             Console.ReadKey(true);
         }
     }
