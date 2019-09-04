@@ -7,8 +7,10 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItemNonActionable : MenuItem
     {
-        private const int k_EscapeCharacter = 0;
-        private static int s_mainMenuItemsCounter = 0;
+        private const int k_EscapeOptionNumber = 0;
+        private const int k_FirstOptionNumber = 1;
+        private const int k_IgnoreFlagDefaultValue = -1;
+        private static bool s_isMainMenuItemConfigured = false;
         private string m_EscapeMenuLine = "Back";
         private List<MenuItem> m_SubMenuItems;
         private bool m_isMainMenu = false;
@@ -18,12 +20,12 @@ namespace Ex04.Menus.Delegates
             get { return m_isMainMenu; }
             set
             {
-                if (s_mainMenuItemsCounter == 1)
+                if (s_isMainMenuItemConfigured)
                 {
                     throw new ArgumentException("A single Main Menu Item already exists!");
                 }
 
-                s_mainMenuItemsCounter++;
+                s_isMainMenuItemConfigured = true;
                 m_isMainMenu = value;
                 m_EscapeMenuLine = "Exit";
             }
@@ -54,11 +56,11 @@ namespace Ex04.Menus.Delegates
                 showMenuItems();
                 int userChoice = GetUserChoice();
 
-                if (k_EscapeCharacter == userChoice)
+                if (k_EscapeOptionNumber == userChoice)
                 {
                     isMenuActivated = false;
                 }
-                else
+                else if (userChoice != k_IgnoreFlagDefaultValue)
                 {
                     m_SubMenuItems[userChoice - 1].Activate();
                 }
@@ -67,33 +69,48 @@ namespace Ex04.Menus.Delegates
 
         protected int GetUserChoice()
         {
-            string userChoiceString = Console.ReadLine();
-            int result;
+            Console.Write(" > ");
+            ConsoleKeyInfo userChoiceKey = Console.ReadKey();
+            Console.WriteLine();
             int userChoice;
-            if (int.TryParse(userChoiceString, out userChoice))
+            bool isValid = parseUserInputToInt(userChoiceKey, out userChoice);
+
+            return userChoice;
+        }
+
+        protected bool parseUserInputToInt(ConsoleKeyInfo i_UserConsoleKeyInput, out int o_UserChoice)
+        {
+            bool isValid = true;
+            bool isIntParsed = false;
+            bool shouldIgnore = i_UserConsoleKeyInput.Key == ConsoleKey.Enter || i_UserConsoleKeyInput.Key == ConsoleKey.Spacebar;
+            if (!shouldIgnore)
             {
-                if ((userChoice >= 1 && userChoice <= m_SubMenuItems.Count) || (userChoice == k_EscapeCharacter))
+                isIntParsed = int.TryParse(i_UserConsoleKeyInput.KeyChar.ToString(), out o_UserChoice);
+                if (isIntParsed)
                 {
-                    result = userChoice;
+                    isValid = (o_UserChoice >= k_FirstOptionNumber && o_UserChoice <= m_SubMenuItems.Count)
+                              || (o_UserChoice == k_EscapeOptionNumber);
                 }
-                else
+
+                if (!isIntParsed || !isValid)
                 {
-                    throw new ArgumentException(
-                        string.Format("Expected a menu option value in range of of 1-{0}: Received input not in range.", m_SubMenuItems.Count));
+                    o_UserChoice = k_IgnoreFlagDefaultValue;
+                    Console.WriteLine("Invalid input: Please choose from the menu options.");
+                    promptEnterToContinue();
                 }
             }
             else
             {
-                throw new FormatException("Expected a natural value to match a menu option: Received input not in format.");
+                o_UserChoice = k_IgnoreFlagDefaultValue;
             }
 
-            return result;
+            return isValid;
         }
 
         private void showMenuItems()
         {
             StringBuilder menuOutput = new StringBuilder();
-            menuOutput.AppendFormat("{0}:{1}", m_Headline, Environment.NewLine);
+            menuOutput.AppendFormat("{0}{1}", m_Headline, Environment.NewLine);
             int rowCounter = 0;
             menuOutput.AppendFormat("\t{0}. {1}{2}", rowCounter++, m_EscapeMenuLine, Environment.NewLine);
             foreach (MenuItem item in m_SubMenuItems)
