@@ -10,23 +10,23 @@ namespace Ex04.Menus.Delegates
         private const int k_EscapeOptionNumber = 0;
         private const int k_FirstOptionNumber = 1;
         private const int k_IgnoreFlagDefaultValue = -1;
-        private static bool s_isMainMenuItemConfigured = false;
+        private static bool s_IsMainMenuItemConfigured = false;
         private string m_EscapeMenuLine = "Back";
         private List<MenuItem> m_SubMenuItems;
-        private bool m_isMainMenu = false;
+        private bool m_IsMainMenu = false;
 
         public bool IsSetToMainMenu
         {
-            get { return m_isMainMenu; }
+            get { return m_IsMainMenu; }
             set
             {
-                if (s_isMainMenuItemConfigured)
+                if (s_IsMainMenuItemConfigured)
                 {
                     throw new ArgumentException("A single Main Menu Item already exists!");
                 }
 
-                s_isMainMenuItemConfigured = true;
-                m_isMainMenu = value;
+                s_IsMainMenuItemConfigured = true;
+                m_IsMainMenu = value;
                 m_EscapeMenuLine = "Exit";
             }
         }
@@ -73,12 +73,12 @@ namespace Ex04.Menus.Delegates
             ConsoleKeyInfo userChoiceKey = Console.ReadKey();
             Console.WriteLine();
             int userChoice;
-            bool isValid = parseUserInputToInt(userChoiceKey, out userChoice);
+            bool isValid = ParseUserInputToInt(userChoiceKey, out userChoice);
 
             return userChoice;
         }
 
-        protected bool parseUserInputToInt(ConsoleKeyInfo i_UserConsoleKeyInput, out int o_UserChoice)
+        protected bool ParseUserInputToInt(ConsoleKeyInfo i_UserConsoleKeyInput, out int o_UserChoice)
         {
             bool isValid = true;
             bool isIntParsed = false;

@@ -8,19 +8,19 @@ namespace Ex04.Menus.Test
 {
     public static class MainMenuDelegatesBuilder
     {
-        public static Delegates.MainMenu Build()
+        public static MainMenu Build()
         {
             MenuItemActionable showTimeMenu = new MenuItemActionable("Show Time", "The current time is");
-            showTimeMenu.m_ActivateOccuredDelegate += menuItem_ShowTimeActivated;
+            showTimeMenu.ActivateOccuredDelegate += menuItemActionable_ActivateOccuredDelegate_ShowTime;
 
             MenuItemActionable showDateMenu = new MenuItemActionable("Show Date", "Today's Date");
-            showDateMenu.m_ActivateOccuredDelegate += menuItem_ShowDateActivated;
+            showDateMenu.ActivateOccuredDelegate += menuItemActionable_ActivateOccuredDelegate_ShowDate;
 
             MenuItemActionable showVersionMenu = new MenuItemActionable("Show Version", "Version");
-            showVersionMenu.m_ActivateOccuredDelegate += menuItem_ShowVersioActivated;
+            showVersionMenu.ActivateOccuredDelegate += menuItemActionable_ActivateOccuredDelegate_ShowVersion;
 
             MenuItemActionable countSpacesMenu = new MenuItemActionable("Count Spaces", "Please provide input for the Space Counter");
-            countSpacesMenu.m_ActivateOccuredDelegate += menuItem_CountSpacesActivated;
+            countSpacesMenu.ActivateOccuredDelegate += menuItemActionable_ActivateOccuredDelegate_CountSpaces;
 
             MenuItemNonActionable dateTimeMenu = new MenuItemNonActionable(
                 "Show Date/Time", "Date/Time");
@@ -40,28 +40,28 @@ namespace Ex04.Menus.Test
             mainMenuItem.AddSubMenuItem(dateTimeMenu);
             mainMenuItem.AddSubMenuItem(versionsAndDigitsMenu);
 
-            return new Delegates.MainMenu(mainMenuItem);
+            return new MainMenu(mainMenuItem);
         }
 
-        private static void menuItem_ShowTimeActivated(string i_MenuHeadline)
+        private static void menuItemActionable_ActivateOccuredDelegate_ShowTime(string i_MenuHeadline)
         {
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
             ProgramUtils.ShowCurrentTimeString();
         }
 
-        private static void menuItem_ShowDateActivated(string i_MenuHeadline)
+        private static void menuItemActionable_ActivateOccuredDelegate_ShowDate(string i_MenuHeadline)
         {
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
             ProgramUtils.ShowCurrentDateString();
         }
 
-        private static void menuItem_ShowVersioActivated(string i_MenuHeadline)
+        private static void menuItemActionable_ActivateOccuredDelegate_ShowVersion(string i_MenuHeadline)
         {
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
             ProgramUtils.ShowVersion();
         }
 
-        private static void menuItem_CountSpacesActivated(string i_MenuHeadline)
+        private static void menuItemActionable_ActivateOccuredDelegate_CountSpaces(string i_MenuHeadline)
         {
             Console.WriteLine("{0}{1}", i_MenuHeadline, Environment.NewLine);
             ProgramUtils.CountSpaces();

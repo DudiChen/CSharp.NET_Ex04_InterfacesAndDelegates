@@ -9,7 +9,7 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            Interfaces.MainMenu mainMenuInterface = new Interfaces.MainMenu(InterfaceProgramUtils.mainMenuCreator());
+            Interfaces.MainMenu mainMenuInterface = new Interfaces.MainMenu(InterfaceProgramUtils.MainMenuCreator());
             mainMenuInterface.Show();
 
             Delegates.MainMenu mainMenu = MainMenuDelegatesBuilder.Build();

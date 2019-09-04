@@ -7,7 +7,7 @@ namespace Ex04.Menus.Test
 {
     public class InterfaceProgramUtils
     {
-        public static MenuItem mainMenuCreator()
+        public static MenuItem MainMenuCreator()
         {
             MenuItemNonActionable mainMenuItem = new MenuItemNonActionable("Interface Main menu");
             MenuItemNonActionable dateTimeMenuItem = new MenuItemNonActionable("Show Date/Time");
