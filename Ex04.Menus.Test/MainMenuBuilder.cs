@@ -8,7 +8,7 @@ namespace Ex04.Menus.Test
 {
     public static class MainMenuDelegatesBuilder
     {
-        public static MainMenu Build()
+        public static Delegates.MainMenu Build()
         {
             MenuItemActionable showTimeMenu = new MenuItemActionable("Show Time", "The current time is");
             showTimeMenu.m_ActivateOccuredDelegate += menuItem_ShowTimeActivated;
@@ -40,7 +40,7 @@ namespace Ex04.Menus.Test
             mainMenuItem.AddSubMenuItem(dateTimeMenu);
             mainMenuItem.AddSubMenuItem(versionsAndDigitsMenu);
 
-            return new MainMenu(mainMenuItem);
+            return new Delegates.MainMenu(mainMenuItem);
         }
 
         private static void menuItem_ShowTimeActivated(string i_MenuHeadline)

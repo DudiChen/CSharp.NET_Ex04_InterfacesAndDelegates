@@ -66,7 +66,7 @@ namespace Ex04.Menus.Interfaces
             System.Console.WriteLine("Choose from the choices above:");
             int userInput;
 
-            while ((!int.TryParse(System.Console.ReadLine(), out userInput)) || (userInput < 0 && userInput > m_SubMenuItems.Count))
+            while ((!int.TryParse(System.Console.ReadLine(), out userInput)) || (userInput < 0 || userInput > m_SubMenuItems.Count))
             {
                 System.Console.WriteLine("input not valid try again:");
             }

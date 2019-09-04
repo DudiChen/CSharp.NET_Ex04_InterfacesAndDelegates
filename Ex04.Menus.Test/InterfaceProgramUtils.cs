@@ -5,15 +5,10 @@ using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    public class ProgramInterface
+    public class InterfaceProgramUtils
     {
-        public void InterfaceMainMenu()
-        {
-            MainMenu mainMenu = new MainMenu(mainMenuCreator());
-            mainMenu.Show();
-        }
 
-        private MenuItem mainMenuCreator()
+        public static MenuItem mainMenuCreator()
         {
             MenuItemNonActionable mainMenuItem = new MenuItemNonActionable("Main menu");
             MenuItemNonActionable dateTimeMenuItem = new MenuItemNonActionable("Show Date/Time");
@@ -70,7 +65,7 @@ namespace Ex04.Menus.Test
 
     internal class Version : IOnSelectedListener
     {
-        private const string k_VersionNumberStr = "1.0.0.21";
+        private const string k_VersionNumberStr = "19.3.4.42";
 
         public void OnSelected()
         {

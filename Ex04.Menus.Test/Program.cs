@@ -9,8 +9,9 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            //ProgramInterface test = new ProgramInterface();
-            //test.InterfaceMainMenu();
+            Interfaces.MainMenu mainMenuInterface= new Interfaces.MainMenu(InterfaceProgramUtils.mainMenuCreator());
+            mainMenuInterface.Show();
+
             Delegates.MainMenu mainMenu = MainMenuDelegatesBuilder.Build();
             mainMenu.Show();
         }
